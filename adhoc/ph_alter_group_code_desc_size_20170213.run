@@ -1,0 +1,6 @@
+-- Purpose: Increase the size of the group_codes.description column to 60
+-- Author: K.Farlow
+-- Date: 13-Feb-2017
+
+ALTER TABLE group_codes
+MODIFY description VARCHAR2(60);

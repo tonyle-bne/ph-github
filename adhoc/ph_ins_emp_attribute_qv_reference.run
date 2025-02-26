@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------
+-- Program name: ph_ins_emp_attribute_qv_reference.run
+-- Author:      Sheeja Kambil
+-- Created:     16 Aug 2018
+-- Modify:       
+-- Purpose:     Script to create the emp_attribute types and values into 
+--              qv_reference_cd table
+--------------------------------------------------------------------------
+
+-- run once only
+
+SET SERVEROUTPUT ON
+
+PROMPT create qv_reference_cd entries for the emp_attribute types and values...
+@@ph_ins_emp_attribute_qv_reference.sql
+

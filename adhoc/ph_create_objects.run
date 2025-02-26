@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------
+-- Program name: ph_create_objects.run
+-- Author:      Tony Le
+-- Created:     22 September 2009
+-- Modify:      Tony Le
+-- Purpose:     Script to create all objects for phone book admin application
+--------------------------------------------------------------------------
+
+-- run once only
+
+SET SERVEROUTPUT ON
+
+PROMPT create tables for phone book admin application...
+@@ph_create_tables.tab
+

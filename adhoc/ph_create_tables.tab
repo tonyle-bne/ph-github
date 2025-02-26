@@ -1,0 +1,39 @@
+--------------------------------------------------------------------------
+-- Program name: ph_create_tables.sql
+-- Author:      Tony Le
+-- Created:     23 March 2009
+-- Modify:      Tony Le
+-- Purpose:     Creating tables for Phone Book Admin application
+--------------------------------------------------------------------------
+
+DROP TABLE QV_CLOSED_USER_GROUP_WK CASCADE CONSTRAINTS;
+
+---------------------------------------------------------------------------------
+-- QV_CLOSED_USER_GROUP_WK
+---------------------------------------------------------------------------------
+
+CREATE TABLE QV_CLOSED_USER_GROUP_WK
+(
+  PERSON_NAME        VARCHAR2(50 BYTE)          NOT NULL,
+  EMAIL_ADDRESS      VARCHAR2(100 BYTE),
+  MOBILE_NUMBER      VARCHAR2(20 BYTE),
+  CLOSED_USER_GROUP  VARCHAR2(10 BYTE)          NOT NULL
+)
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+COMMENT ON TABLE QV_CLOSED_USER_GROUP_WK IS 'Working table for the import of Closed User Group numbers from Communications Administration spreadsheets.';
+
+COMMENT ON COLUMN QV_CLOSED_USER_GROUP_WK.PERSON_NAME IS 'The name of the person to whom the closed user group number belongs';
+
+COMMENT ON COLUMN QV_CLOSED_USER_GROUP_WK.EMAIL_ADDRESS IS 'The email address of the person';
+
+COMMENT ON COLUMN QV_CLOSED_USER_GROUP_WK.MOBILE_NUMBER IS 'The mobile phone number of the person';
+
+COMMENT ON COLUMN QV_CLOSED_USER_GROUP_WK.CLOSED_USER_GROUP IS 'The closed user group number assigned to the person';
+
+CREATE PUBLIC SYNONYM QV_CLOSED_USER_GROUP_WK FOR QV_CLOSED_USER_GROUP_WK;
+

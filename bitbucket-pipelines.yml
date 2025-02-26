@@ -1,0 +1,72 @@
+image: 
+    name: 118513774490.dkr.ecr.ap-southeast-2.amazonaws.com/qv-deployer:latest
+    aws: 
+      access-key: $PRD_AWS_ACCESS_KEY_ID
+      secret-key: $PRD_AWS_SECRET_ACCESS_KEY    
+
+definitions:
+  steps:
+    - step: &deploy
+        runs-on:
+          - self.hosted
+          - linux.shell
+          - image.qvdeployer
+        name: Deploy Changeset
+        script:      
+            - source /deployment/deploy.sh -d qv${BITBUCKET_DEPLOYMENT_ENVIRONMENT} -s qvp_owner
+pipelines:
+  custom:
+    deploy-to-dev:
+      - step:
+          <<: *deploy
+          name: DEV
+          deployment: dev
+    deploy-to-qa:
+      - step:
+          <<: *deploy
+          name: QA
+          deployment: qa
+    deploy-to-int:
+      - step:
+          <<: *deploy
+          name: INT
+          deployment: int
+  branches:
+    develop:
+      - step:
+          <<: *deploy
+          name: DEV
+          deployment: dev
+    
+    feature/*:
+      - step:
+          <<: *deploy
+          name: DEV
+          deployment: dev    
+
+    hotfix/*:
+      - step:
+          <<: *deploy
+          name: DEV
+          deployment: dev
+      - step:
+          <<: *deploy
+          name: PRD
+          deployment: prd
+          trigger: manual              
+
+    release/*:
+      - step:
+          <<: *deploy
+          name: QA
+          deployment: qa
+      - step:
+          <<: *deploy
+          name: INT
+          deployment: int
+      - step:
+          <<: *deploy
+          name: PRD
+          deployment: prd
+          trigger: manual
+       

@@ -1,0 +1,10 @@
+--------------------------------------------------------------------------------
+-- Script to increase the size of the Description column in both
+-- group_codes and subgroup_codes
+--------------------------------------------------------------------------------
+
+ALTER TABLE group_codes
+    MODIFY description VARCHAR2(100);
+    
+ALTER TABLE subgroup_codes
+    MODIFY description VARCHAR2(100);

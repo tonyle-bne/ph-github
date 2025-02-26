@@ -1,0 +1,15 @@
+--------------------------------------------------------------------------
+-- Program name: ph_migrate_data_driver.mig
+-- Author:      Tony Le
+-- Created:     22 Sept 2009
+-- Modify:      Tony Le
+-- Purpose:     Script to run ph_migrate_data.sql
+-- 22-Dec-2009  Roy Willie -- Added the EXIT Statment to allow running from
+--                            SQLPLUS
+--------------------------------------------------------------------------
+
+@@ph_migrate_data.sql;
+
+@@ph_update_emp_org_unit.sql;
+
+EXIT
